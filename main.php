@@ -35,7 +35,7 @@
 			}
 			.circle-text {
 				width:70%;
-				margin-bottom: 5px;
+				margin-bottom: 10px;
 			}
 			.circle-text:after {
 				content: "";
@@ -75,11 +75,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav" id="menu">
-            <li class=""><a href="welcome.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio</a></li>
+            <li class=""><a href="welcome.php" id="bohemian_rhapsody"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio</a></li>
             <li class="dropdown">
               <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="diff"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Archivos <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Subir</a></li>
+                <li><a href="up.php"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Subir</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Compartir</a></li>
               </ul>
             </li>
@@ -124,6 +124,7 @@
 		$.get($(this).attr("href"),function(resp){$("#load").html(resp);});
 		return false;
 		});
+		$("#bohemian_rhapsody").click();
 	</script>
 
 </body></html>

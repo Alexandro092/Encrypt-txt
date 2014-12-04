@@ -19,6 +19,8 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="js/ie-emulation-modes-warning.js"></script>
+	<!--FONT AWESOME -->
+	<link href="fa/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,6 +32,30 @@
 		.bg-bdy{
 			background-image: url("imgs/pattern-327u.png");
 			background-repeat: repeat ;
+			}
+			.circle-text {
+				width:70%;
+				margin-bottom: 5px;
+			}
+			.circle-text:after {
+				content: "";
+				display: block;
+				width: 100%;
+				height:0;
+				padding-bottom: 100%;
+				background: #4679BD;
+				-moz-border-radius: 50%;
+				-webkit-border-radius: 50%;
+				border-radius: 50%;
+			}
+			.circle-text div {
+				float:left;
+				width:100%;
+				padding-top:20%;
+				line-height:1em;
+				margin-top:-0.5em;
+				text-align:center;
+				color:white;
 			}
 	</style>
 
@@ -48,10 +74,10 @@
           <a class="navbar-brand" href="#">Encrypt-txt</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class=""><a href="#"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio</a></li>
+          <ul class="nav navbar-nav" id="menu">
+            <li class=""><a href="welcome.php"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Inicio</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Archivos <span class="caret"></span></a>
+              <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="diff"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Archivos <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Subir</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Compartir</a></li>
@@ -74,9 +100,8 @@
 
 
     <div class="container">
-
-
-
+		<div id="load">
+		</div>
     </div> <!-- /container -->
 	
 
@@ -94,6 +119,11 @@
 			$(this).parent().addClass('active');
 		});
 	</script>
-  
+	<script>
+		$("#menu a[id!=diff]").click(function(){
+		$.get($(this).attr("href"),function(resp){$("#load").html(resp);});
+		return false;
+		});
+	</script>
 
 </body></html>

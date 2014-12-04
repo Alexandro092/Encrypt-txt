@@ -80,10 +80,10 @@
               <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="diff"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Archivos <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="up.php"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span> Subir</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Compartir</a></li>
+                <li><a href="share.php"><span class="glyphicon glyphicon-link" aria-hidden="true"></span> Compartir</a></li>
               </ul>
             </li>
-			<li class=""><a href="#"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Archivos recibidos</a></li>
+			<li class=""><a href="files.php"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Archivos recibidos</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

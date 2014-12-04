@@ -78,7 +78,7 @@
 
 
     </div> <!-- /container -->
-
+	
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -87,6 +87,13 @@
     <script src="js/bootstrap.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+	<!-- Active -->
+	<script>
+		$('li > a').click(function() {
+			$('li').removeClass();
+			$(this).parent().addClass('active');
+		});
+	</script>
   
 
 </body></html>

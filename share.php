@@ -12,8 +12,10 @@
 			<input type="password" required="" name="phrase">
 		</td>
 		<td>
-			<select required>
+			<select multiple required>
 				<option>Fulanito</option>
+				<option>Sutanito</option>
+				<option>Perenganito</option>
 			</select>
 		</td>
 	  </tr>

@@ -1,7 +1,33 @@
 <?php
+session_start();
 require_once('db/db.php');
-echo $_POST['user'];
-echo $_POST['pass'];
+
+if(!isset($_POST['user']) and !isset($_POST['user'])){
+  $_POST['user']='';
+  $_POST['pass']='';
+}
+else{
+  $user = $_POST['user']; 
+  $pass = $_POST['pass'];
+ 
+  $passmd5 = md5($pass);
+  $query ="SELECT  username, password, iduser FROM user WHERE username ='$user' and password = '$passmd5'";
+  
+  
+  $start = $db->prepare($query);
+  $start->execute();
+
+  $count = $start->rowCount();
+  $row = $start->fetch();
+  if($count == 1){
+      $_SESSION['user'] = $row[0];
+      $_SESSION['iduser'] = $row[2];
+      header("Location: main.php");
+  }
+  else{ 
+      echo "<p class=\"rojo text-center\">Inicio de sesión fallido </p>";
+  }
+}        
 ?>
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -38,6 +64,9 @@ echo $_POST['pass'];
 			background-image: url("imgs/pattern-327u.png");
 			background-repeat: repeat ;
 			}
+    .rojo{
+        color: red;
+      }
 	</style>
   </head>
   <body class="bg-bdy">
@@ -50,6 +79,7 @@ echo $_POST['pass'];
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input id="inputPassword" class="form-control" placeholder="Contraseña" required="" type="password" name="pass">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+
       </form>
     </div> <!-- /container -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

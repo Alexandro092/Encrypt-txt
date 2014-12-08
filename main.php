@@ -1,3 +1,13 @@
+<?php session_start();
+if(isset($_SESSION['user']) and isset($_SESSION['iduser'])){
+  $usuario = $_SESSION['user'];
+  $idusuario = $_SESSION['iduser'];
+   
+}
+else{
+    header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -87,9 +97,9 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Usuario  <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"> <?php echo $usuario;  ?></span><span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-                <li><a href="#"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a></li>
+                <li><a href="logout.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Cerrar Sesión</a></li>
               </ul>
 			
 			</li>

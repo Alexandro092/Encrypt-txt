@@ -25,7 +25,11 @@ else{
       header("Location: main.php");
   }
   else{ 
-      echo "<p class=\"rojo text-center\">Inicio de sesión fallido </p>";
+      echo "<div class=\"container\">
+              <div class=\"col-md-2 col-md-offset-5 alert alert-danger\" role=\"alert\">
+                <strong>Inicio de sesión fallido, datos incorrectos</strong>
+              </div>
+            </div>";
   }
 }        
 ?>

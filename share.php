@@ -8,8 +8,8 @@
 	  <tr>
 		<td>Jill</td>	
 		<td>
-			<label><input type="checkbox"> Palabra clave </label>
-			<input type="password" required="" name="phrase">
+			<label><input type="checkbox" onclick="var input = document.getElementById('pass'); if(this.checked){ input.disabled = false; input.focus();}else{input.disabled=true;}"> Palabra clave </label>
+			<input type="password" required="" id="pass" name="phrase" disabled="disabled">
 		</td>
 		<td>
 			<select multiple required>

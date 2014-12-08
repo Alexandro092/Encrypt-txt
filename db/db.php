@@ -1,16 +1,13 @@
 <?php
   $user='root';
-  $pass='eo8s5tcww1';
+  $pass='passwd';
   
-  function DbConn ($user,$pass){
     try{
-     $db = new PDO ('mysql:host=localhost;dbname=test', $user, $pass); 
+     $db = new PDO ('mysql:host=localhost;dbname=encrypt', $user, $pass); 
     }catch (Exception $e){
       echo 'Caught exception: ',  $e->getMessage(), "\n";
     }
-  }
 
-  DbConn($user,$pass);
 
 
 ?>

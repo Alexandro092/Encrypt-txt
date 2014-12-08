@@ -1,3 +1,8 @@
+<?php
+require_once('db/db.php');
+echo $_POST['user'];
+echo $_POST['pass'];
+?>
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -38,12 +43,12 @@
   <body class="bg-bdy">
     <div class="container">
 	 <h1 class="form-signin-heading text-center">Inicio de sesión</h1>
-      <form class="form-signin" role="form">
+      <form class="form-signin" role="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
 		<div class="centro"><i class="fa fa-lock fa-5x"></i></div>
         <label for="inputEmail" class="sr-only">Nombre de Usuario</label>
-        <input id="inputEmail" class="form-control" placeholder="Usuario" required="" autofocus="" type="text">
+        <input id="inputEmail" class="form-control" placeholder="Usuario" required="" autofocus="" type="text" name="user">
         <label for="inputPassword" class="sr-only">Contraseña</label>
-        <input id="inputPassword" class="form-control" placeholder="Contraseña" required="" type="password">
+        <input id="inputPassword" class="form-control" placeholder="Contraseña" required="" type="password" name="pass">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
       </form>
     </div> <!-- /container -->

@@ -54,7 +54,7 @@ try{
                     }catch (Exception $e){
                       echo 'Caught exception: ',  $e->getMessage(), "\n";
                     }
-                echo "El archivo ". basename( $_FILES["archivo"]["name"]). " fue cargado exitosamente <a href=\'javascript:history.back()\'>Regresar</a>.";
+                echo "El archivo ". basename( $_FILES["archivo"]["name"]). " fue cargado exitosamente <a href=\'main.php\'>Regresar</a>.";
             } else {
                 echo "Ocurrio un problema al subir el archivo.";
             }

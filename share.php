@@ -12,47 +12,74 @@ else{
 
 
 ?>
-<form class="form-inline" role="form">
-	<table class="table table-hover table-responsive">
+
+	<table class="table table-hover table-responsive" >
 	  <tr>
 		<th>Nombre del archivo</th>	
 		<th>Encriptar</th>
 		<th>Usuario</th>
 	  </tr>
       <?php
-          $user="SELECT name, path, idfiles FROM files WHERE owner = '$idusuario'";
+          $user="SELECT  name, path, idfiles FROM files WHERE owner = '$idusuario'";
 
           $getFiles = $db->prepare($user);
              $getFiles->execute();
              while ($data = $getFiles->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>";
-                extract($data);
-                echo "<td>{$name}</td>";
-             
-      ?>
-    <td>
-			<label><input type="checkbox" onclick="var input = document.getElementById('pass'); if(this.checked){ input.disabled = false; input.focus();}else{input.disabled=true;}"> Palabra clave </label>
-			<input type="password" required="" id="pass" name="phrase" disabled="disabled">
+                 extract($data);
+                 ?>
+     <tr>
+        <td><?php echo $name;?></td>
+        <td>
+			<label><input type="checkbox" id="<?php echo $idfiles;?>"> Palabra clave </label>
+			<input type="password" required="" id="pass_<?php echo $idfiles;?>" name="phrase" disabled="disabled">
 		</td>
+		<td>
         <?php
-            echo "<td>";
+            
               $users = "SELECT iduser, username FROM user WHERE username <> '$usuario'";
               $getUsers = $db->prepare($users);
               $getUsers->execute();                
-              echo "<select multiple>";
+              echo "<select multiple=\"multiple\" id=\"user_{$idfiles}\">";
               while ($info = $getUsers->fetch(PDO::FETCH_ASSOC)) {
-                extract($info);
+                    extract($info);
 
                   echo "<option value='{$iduser}'>{$username}</option>";
               }
               echo "</select>";
-            echo "<td>";
-          echo "</tr>";
-        }
-        ?>
-			</select>
+         ?>
+		</td>
+		<td>
+		  <form class="form-inline" role="form" action="data.php" id="<?php echo $idfiles;?>">
+		      <input type="hidden" name="accion" value="share" />
+		      <input type="hidden" name="idfile" value="<?php echo $idfiles;?>"/>
+		      <button type="submit" class="btn btn-primary">Compartir</button>
+		  </form>
 		</td>
 	  </tr>
+	  <?php }?>
 	</table>
-	<button type="submit" class="btn btn-primary">Compartir</button>
+	
 </form>
+<script type="text/javascript">
+$("input[type=checkbox]").change(function(){
+	id=$(this).attr('id');
+	$("#pass_"+id).prop({disabled: true	});
+	//alert();
+	//console.log($("#pass_"+id));
+	if($(this).prop("checked")==true){
+		//$("#pass_"+id).prop("disabled");
+		$("#pass_"+id).removeProp("disabled");
+	}
+	
+});
+$("form").submit(function(event){
+	event.preventDefault();
+	id=$(this).attr('id');
+	//alert($("#user_"+id).val());
+	$.post($(this).attr('action'),
+			$(this).serialize()+"&users="+$("#user_"+id).val()+"&pass="+$("#pass_"+id).val(),
+			function(res){
+		alert(res);
+	});
+});
+</script>

@@ -12,12 +12,12 @@ else{
 
 
 ?>
-
 	<table class="table table-hover table-responsive" >
 	  <tr>
 		<th>Nombre del archivo</th>	
 		<th>Encriptar</th>
 		<th>Usuario</th>
+		<th>Compartir</th>
 	  </tr>
       <?php
           $user="SELECT  name, path, idfiles FROM files WHERE owner = '$idusuario'";
@@ -30,8 +30,8 @@ else{
      <tr>
         <td><?php echo $name;?></td>
         <td>
-			<label><input type="checkbox" id="<?php echo $idfiles;?>"> Palabra clave </label>
-			<input type="password" required="" id="pass_<?php echo $idfiles;?>" name="phrase" disabled="disabled">
+			<label><!--<input type="checkbox" id="<?php echo $idfiles;?>" checked="checked" readonly="readonly">--> Palabra clave </label>
+			<input type="password" required="required" id="pass_<?php echo $idfiles;?>" name="phrase" >
 		</td>
 		<td>
         <?php
@@ -39,7 +39,7 @@ else{
               $users = "SELECT iduser, username FROM user WHERE username <> '$usuario'";
               $getUsers = $db->prepare($users);
               $getUsers->execute();                
-              echo "<select multiple=\"multiple\" id=\"user_{$idfiles}\">";
+              echo "<select multiple=\"multiple\" id=\"user_{$idfiles}\" required=\"required\">";
               while ($info = $getUsers->fetch(PDO::FETCH_ASSOC)) {
                     extract($info);
 
@@ -52,16 +52,16 @@ else{
 		  <form class="form-inline" role="form" action="data.php" id="<?php echo $idfiles;?>">
 		      <input type="hidden" name="accion" value="share" />
 		      <input type="hidden" name="idfile" value="<?php echo $idfiles;?>"/>
-		      <button type="submit" class="btn btn-primary">Compartir</button>
+          <input type="hidden" name="nfile"; value="<?php echo $name  ?>"/>
+		      <button type="submit" class="btn btn-primary btn-xs">Compartir</button>
 		  </form>
 		</td>
 	  </tr>
 	  <?php }?>
 	</table>
 	
-</form>
 <script type="text/javascript">
-$("input[type=checkbox]").change(function(){
+/*$("input[type=checkbox]").change(function(){
 	id=$(this).attr('id');
 	$("#pass_"+id).prop({disabled: true	});
 	//alert();
@@ -71,7 +71,7 @@ $("input[type=checkbox]").change(function(){
 		$("#pass_"+id).removeProp("disabled");
 	}
 	
-});
+});*/
 $("form").submit(function(event){
 	event.preventDefault();
 	id=$(this).attr('id');
